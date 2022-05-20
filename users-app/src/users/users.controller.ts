@@ -6,7 +6,13 @@ export class UsersController {
   constructor(private readonly service: UsersService) {}
 
   @Get('users')
-  getHello(): string {
-    return this.service.getHello();
+  findAll() {
+    return this.service.findAll();
   }
+
+  @Get('users/1')
+  create() {
+    return this.service.create();
+  }
+
 }
