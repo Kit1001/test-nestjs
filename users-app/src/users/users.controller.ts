@@ -1,5 +1,6 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
 import {UsersService} from './users.service'
+import {UserModel} from "./users.model";
 
 @Controller()
 export class UsersController {
@@ -12,7 +13,7 @@ export class UsersController {
     }
 
     @Post('users')
-    create(@Body() data: Body): Promise<string> {
+    create(@Body() data: Body): Promise<UserModel> {
         return this.service.create(data);
     }
 
@@ -22,12 +23,12 @@ export class UsersController {
     }
 
     @Patch('users/:id')
-    update(@Param() params, @Body() body) {
+    update(@Param() params, @Body() body): Promise<[affectedCount:number]> {
         return this.service.update(params.id, body);
     }
 
     @Delete('users/:id')
-    delete(@Param() params) {
+    delete(@Param() params): Promise<number> {
         return this.service.delete(params.id);
     }
 }

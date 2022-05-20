@@ -11,15 +11,12 @@ export class UsersService {
     }
 
     async findAll(): Promise<UserModel[]> {
-        return this.user.findAll();
+        return await this.user.findAll();
     }
 
     async create(data) {
         const {username, password} = data;
-        await this.user.create(
-            {username, password}
-        )
-        return 'success';
+        return await this.user.create({username, password})
     }
 
     async retrieve(id) {
