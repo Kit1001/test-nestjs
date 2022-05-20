@@ -14,9 +14,23 @@ export class UsersService {
         return this.user.findAll();
     }
 
-    async create() {
+    async create(data) {
+        const {username, password} = data;
         await this.user.create(
-            {username: 'test', password: '123'}
+            {username, password}
         )
+        return 'success';
+    }
+
+    async retrieve(id) {
+        return await this.user.findOne({where: {id}})
+    }
+
+    async update(id, data) {
+        return await this.user.update(data, {where: {id}})
+    }
+
+    async delete(id) {
+        return await this.user.destroy({where: {id}})
     }
 }
