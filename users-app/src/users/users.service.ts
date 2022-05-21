@@ -30,4 +30,8 @@ export class UsersService {
     async delete(id) {
         return await this.user.destroy({where: {id}})
     }
+
+    async findByName(username) {
+        return await this.user.findOne({where: {username}})
+    }
 }
