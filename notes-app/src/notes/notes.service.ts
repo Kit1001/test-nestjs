@@ -30,14 +30,4 @@ export class NotesService {
     async delete(id) {
         return await this.note.destroy({where: {id}})
     }
-
-    async myFunc(headers) {
-        if (headers) {
-            await axios.get('http://localhost:3000/profile', {headers}).then(response => {
-                console.log(response.data);
-            }).catch(error => console.log(error));
-            return 'success';
-        }
-        return 'error';
-    }
 }
