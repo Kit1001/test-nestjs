@@ -1,6 +1,8 @@
 import {Injectable} from '@nestjs/common';
 import axios from "axios";
 
+
+// User is validated via accessing users-app profile page, which returns user owning passed token
 @Injectable()
 export class AuthService {
 
