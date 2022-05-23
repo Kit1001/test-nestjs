@@ -1,6 +1,7 @@
 import {Injectable} from '@nestjs/common';
 import {UserModel} from "./users.model";
 import {InjectModel} from "@nestjs/sequelize";
+import axios from "axios";
 
 @Injectable()
 export class UsersService {
@@ -15,8 +16,10 @@ export class UsersService {
     }
 
     async create(data) {
-        const {username, password} = data;
-        return await this.user.create({username, password})
+        const {username, password, email} = data;
+        const headers = {"Content-Type": "application/json"}
+        await axios.post('http://localhost:5000/mail', {username, email}, {headers})
+        return await this.user.create({username, password, email})
     }
 
     async retrieve(id) {
