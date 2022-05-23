@@ -3,7 +3,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { NotesModule } from './notes/notes.module';
 import {SequelizeModule} from "@nestjs/sequelize";
-import {NoteModel} from "./notes/notes.model";
 import { AuthModule } from './auth/auth.module';
 import {APP_GUARD} from "@nestjs/core";
 import {CustomAuthGuard} from "./auth/custom.guard";
@@ -11,11 +10,14 @@ import {CustomAuthGuard} from "./auth/custom.guard";
 @Module({
   imports: [NotesModule,
   SequelizeModule.forRoot({
-            dialect: 'sqlite',
-            storage: './database.sqlite3',
-            models: [NoteModel],
+            dialect: 'postgres',
+            host: 'localhost',
+            port: 5432,
+            username: 'root',
+            password: 'root',
+            database: 'notes',
             autoLoadModels: true,
-            synchronize: true,
+            synchronize: true
         }),
   AuthModule,
   ],
