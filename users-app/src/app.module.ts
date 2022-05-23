@@ -11,11 +11,14 @@ import {JwtAuthGuard} from "./auth/jwt-auth.guard";
 @Module({
     imports: [
         SequelizeModule.forRoot({
-            dialect: 'sqlite',
-            storage: './database.sqlite3',
-            models: [UserModel],
+            dialect: 'postgres',
+            host: 'localhost',
+            port: 5432,
+            username: 'root',
+            password: 'root',
+            database: 'users',
             autoLoadModels: true,
-            synchronize: true,
+            synchronize: true
         }),
         UsersModule,
         AuthModule,
